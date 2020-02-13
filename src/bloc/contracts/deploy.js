@@ -34,13 +34,13 @@ function build(name, symbol, supply) {
             content: erc20(name, symbol, supply)
         }
         },
-        settings: {
-        outputSelection: {
-            '*': {
-            '*': ['*']
-            }
-        }
-        }
+        // settings: {
+        // outputSelection: {
+        //     '*': {
+        //     '*': ['*']
+        //     }
+        // }
+        // }
     };
     console.log("PLE : ",JSON.stringify(input))
     const output = JSON.parse(solc.compile(JSON.stringify(input)));
@@ -69,6 +69,7 @@ class Deploy extends React.Component{
     }
     
 deploy = async (deployTokenName, deployTokenSymbol, deployTokenSupply) =>{
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAA")
     try { 
         const web3 = this.state.web3
       const buildRet = build(deployTokenName, deployTokenSymbol, deployTokenSupply);
@@ -76,7 +77,7 @@ deploy = async (deployTokenName, deployTokenSymbol, deployTokenSupply) =>{
     
       let deploy = newContract.deploy({
         data: buildRet.bytecode,
-        from: accounts.address}).encodeABI();
+        from: web3.eth.getAccounts()}).encodeABI();
     
       const nonce = await web3.eth.getTransactionCount(this.state.web3.eth.getAccounts(), 'pending');
       const rawTx = {

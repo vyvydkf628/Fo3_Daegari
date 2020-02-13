@@ -1,5 +1,5 @@
 import React from "react";
-import Deploy from "../bloc/contracts/deploy"
+// import Deploy from "../bloc/contracts/deploy"
 
 const SmartConract = () => {
     
