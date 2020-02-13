@@ -13,5 +13,9 @@ The Duck Chain provides playgrounds for various enthusiasts through the block ch
 
 ## Why we use Block Chain?
 Blockchain features security, transparency, decentralization, scalability, and reliability. Traditional community services have the following challenges.
-1. **Ownership dispute over goods, tickets, etc. : Security**   
-Fake issues such as limited-edition products and famous concert tickets have been tried in various ways, but they still remain problems. In fact, according to the New York Times, about five times a week there is a "fake ticket" problem on Broadway, especially in a "hot" musical where tickets are hard to buy. These problems are addressed using NFT(Non-Fungible Token). Blockchain technology shows and shares transaction details to all users, making it difficult to fabricate or falsify. The combination of these characteristics makes it possible to prevent ticket-related fraud or crime. 
+1. **Ownership dispute over goods, tickets, etc : Security**   
+Fake issues such as limited-edition products and famous concert tickets have been tried in various ways, but they still remain problems. In fact, according to the New York Times, about five times a week there is a "fake ticket" problem on Broadway, especially in a "hot" musical where tickets are hard to buy. These problems are addressed using NFT(Non-Fungible Token). Blockchain technology shows and shares transaction details to all users, making it difficult to fabricate or falsify. The combination of these characteristics makes it possible to prevent ticket-related fraud or crime.
+2. **Persistent Preservation of Posts and Contents : Decentralization**   
+For enthusiasts, there is a desire to keep a record of writing, photography, etc. However, traditional centralized fan sites are vulnerable in terms of permanent retention of data, for example, due to sudden closures. Currently, the mania community is centrally managed, managed by the cafe's manager, and in the case of boards that are not managed, the members' creations are deleted or neglected.   
+Recently, unlike most recent Internet services that guide users to back up their data at the end of the service, Cyworld did not take any action at first, causing a lot of anxiety among users. The decentralization of the blockchain can solve these problems and keep records permanently.
+3. 
