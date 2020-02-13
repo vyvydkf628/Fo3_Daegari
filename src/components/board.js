@@ -61,7 +61,6 @@ class Board extends React.Component {
                     this.state.prizes[index] = res[index].tokenName+" ,";
                     
                 }
-            console.log("AAAAAAAAAAAA",res)
             }            
         })
     }
