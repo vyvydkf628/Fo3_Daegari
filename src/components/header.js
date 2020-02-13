@@ -1,7 +1,10 @@
 import React from 'react'
 import './header.scss';
-import 'semantic-ui-css/semantic.min.css';
-
+// import 'semantic-ui-css/semantic.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+import NavDropdown from 'react-bootstrap/NavDropdown'
 import { Link } from "react-router-dom";
 
 class Header extends React.Component{
@@ -18,17 +21,26 @@ class Header extends React.Component{
         })
     }
     render(){
-        return (<div className="full-width-view">
-            <div className="header-inner-area">
-                <h3>덕</h3>
-                <div className="ui three item menu">
-                    <Link className={this.state.curPage === 'main'?"item active": 'item'} to= {"/"} onClick={e => this.pageMove(e,'main')}>게시판</Link>
-                    <Link className={this.state.curPage === 'profile'?"item active": 'item'} to={"/profile"} onClick={e => this.pageMove(e, 'profile')}>profile</Link>
-                    <Link className={this.state.curPage === 'smart'?"item active": 'item'} to={"/smartContrac"} onClick={e => this.pageMove(e, 'smart')}>smart contract</Link>
-                    
-                </div>
-            </div>
-        </div>)
+        return (<>
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
+            <Navbar.Brand href="#home">DuckChain</Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+                <Nav className="mr-auto">
+                <Link to={"/"} style={{color : "white" ,padding : "10px"}}>Home</Link>
+                <Link to={"/profile"} style={{color : "white" ,padding : "10px"}}>Profile</Link>
+                <Link to={"/SmartContract"} style={{color : "white" ,padding : "10px"}} >SmartContract</Link>
+                </Nav>
+                <Nav>
+                <Nav.Link href="#deets">More deets</Nav.Link>
+                <Nav.Link eventKey={2} href="#memes">
+                    Dank memes
+                </Nav.Link>
+                </Nav>
+            </Navbar.Collapse>
+            </Navbar>
+        </>
+        )
     }
 }
 export default Header

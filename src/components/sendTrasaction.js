@@ -1,6 +1,7 @@
 import React from "react";
 
-import web3 from '../bloc/contracts/web3'
+// import web3 from '../bloc/contracts/web3'
+import Web3 from "web3";
 
 
 import Dialog from '@material-ui/core/Dialog';
@@ -26,13 +27,10 @@ class SendTransaction extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            // file:null,
             userName:'',
             content: '',
-            // birthday:'',
-            // gender:'',
-            // fileName:'',
-            open: false
+            open: false,
+            web3: new Web3()
         }
 
     }
@@ -53,8 +51,17 @@ class SendTransaction extends React.Component {
             open: false
         })
     }
-    sendTransaction = (name,content) =>{
+    componentDidMount = () =>{
+        
+        if (window.ethereum) {
+            window.ethereum.enable().then((res) => {
+                this.state.web3 = new Web3(window.ethereum);
 
+            });
+        }
+    }
+    sendTransaction = (name,content) =>{
+        const web3 = this.state.web3
         const inputData = {
             name,content
         }
@@ -69,6 +76,11 @@ class SendTransaction extends React.Component {
         })
         web3.eth.sendTransaction(transaction)
         console.log("ASD")
+        // this.findAccount()
+        // .then(res => this.setState({profile: res}))
+        // .catch(err => console.log(err));
+        
+       
     }
     handleValueChange=(e) =>{
         let nextState={};
@@ -92,11 +104,11 @@ class SendTransaction extends React.Component {
     render(){
         return (<>
             <Button varient = "contained" color = "primary" onClick= {this.handleCLickOpen}>Write</Button>
-            <Dialog open= {this.state.open} onClose = {this.handleCLickOpen}>
+            <Dialog aria-labelledby="form-dialog-title" open= {this.state.open} onClose = {this.handleCLickOpen}>
                 <DialogContent>
-                <DialogTitle>Send the Post</DialogTitle> 
-                <br/><TextField label="userName" type="text" name= "userName" value={this.state.userName} onChange={this.handleValueChange}></TextField>
-                <br/><TextField label ="content" type ="text" name= "content" value ={this.state.content} onChange={this.handleValueChange}></TextField>
+                <DialogTitle>-Send the Post-</DialogTitle> 
+                <br/><TextField style = {{width : "auto"}}label="userName" type="text" name= "userName" value={this.state.userName} onChange={this.handleValueChange}></TextField>
+                <br/><TextField autoFocus margin ="dense" label ="content" type ="text" name= "content" value ={this.state.content} onChange={this.handleValueChange}></TextField>
                 </DialogContent>
                 <DialogActions>
                         <Button variant="contained" color="primary" onClick= {this.handleFormSubmit}>ADD</Button>

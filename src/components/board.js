@@ -1,7 +1,11 @@
 import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import faker from 'faker';
-import web3 from '../bloc/contracts/web3';
+import web3 from 'web3';
+
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+
 
 class Board extends React.Component {
     constructor(props){
@@ -35,7 +39,19 @@ class Board extends React.Component {
         console.log(this.state.userName)
     }
     render() {
-        return (<>{this.state.userName &&
+        return (<>
+        {/* <Card style={{ width: '18rem' }}>
+  <Card.Img variant="top" src="holder.js/100px180" />
+  <Card.Body>
+    <Card.Title>Card Title</Card.Title>
+    <Card.Text>
+      Some quick example text to build on the card title and make up the bulk of
+      the card's content.
+    </Card.Text>
+    <Button variant="primary">Go somewhere</Button>
+  </Card.Body>
+</Card> */}
+            {this.state.userName &&
             <div className="comment">
                 <a className="avatar">
                     <img alt ="thmubNail" src={faker.image.avatar()} />

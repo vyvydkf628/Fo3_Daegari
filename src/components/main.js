@@ -5,6 +5,7 @@ import Board from './board';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import SendTransaction from './sendTrasaction'
+import { Container } from "@material-ui/core";
 
 const style = {
     margin: '0 auto'
@@ -30,13 +31,13 @@ class Main extends React.Component {
     constructor(props){
         super(props);
         this.state={
-          posts:'',
+          posts: [],
           completed:0
         }
       }
     stateRefresh = () =>{
       this.setState({
-        posts:'',
+        posts: [],
         completed:0
       })
       this.callApi()
@@ -73,10 +74,12 @@ class Main extends React.Component {
         
         return (
             <div className = "ui comments" style = {style}>
-            {this.state.posts ? this.state.posts.map(c =>{return (<Board stateRefresh = {this.stateRefresh} key = {c} content = {c}/>)
+              <Container>
+            {this.state.posts.lenght !== 0 ? this.state.posts.map((c, idx) =>{return (<Board stateRefresh = {this.stateRefresh} key = {idx} content = {c}/>)
             }): <div> lonading </div>
             //    <CircularProgress className={classes.progress} variant = "determinate" value={this.state.completed} />
             }
+            </Container>
             <SendTransaction />
             </div>
           );

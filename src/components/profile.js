@@ -1,8 +1,6 @@
 import React from "react";
-import web3 from "../bloc/contracts/web3";
+import Web3 from "web3";
 
-
-var util = require('web3-utils');
 
 class Profile extends React.Component {
     constructor(props){
@@ -11,7 +9,8 @@ class Profile extends React.Component {
           profile:'',
           completed:0
         }
-      }
+
+    }
     stateRefresh = () =>{
       this.setState({
         profile:'',
@@ -25,13 +24,18 @@ class Profile extends React.Component {
     
       componentDidMount(){
         // this.timer = setInterval(this.progress,20);
-        this.findAccount()
-        .then(res => this.setState({profile: res}))
-        .catch(err => console.log(err));
+        if (window.ethereum) {
+            window.ethereum.enable().then((res) => {
+                this.web3 = new Web3(window.ethereum);
+                this.findAccount()
+                .then(res => this.setState({profile: res}))
+                .catch(err => console.log(err));
+            });
+        }
       }
     
     findAccount = async () =>{
-        const account = await web3.eth.getAccounts()
+        const account = await this.web3.eth.getAccounts()
         
         console.log(account[0])
         return account;
