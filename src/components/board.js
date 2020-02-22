@@ -3,8 +3,7 @@ import 'semantic-ui-css/semantic.min.css';
 import faker from 'faker';
 import web3 from 'web3';
 
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
+import Spinner from './Spinner'
 
 
 class Board extends React.Component {
@@ -57,10 +56,13 @@ class Board extends React.Component {
             if(res === "Error! Invalid address format"){
                 this.state.prizes = []
             }else{
+                const arr = [];
                 for (let index = 0; index < res.length; index++) {
-                    this.state.prizes[index] = res[index].tokenName+" ,";
-                    
+                    arr[index] = res[index].tokenName+" ,";
                 }
+                this.setState({
+                    prizes : arr
+                })
             }            
         })
     }
@@ -83,7 +85,7 @@ class Board extends React.Component {
                     <img alt ="thmubNail" src={faker.image.avatar()} />
                 </a>
                 <div className="content">
-                    <a className="author">{this.state.userName ? <div> {this.state.userName} </div> : <div> loading </div>
+                    <a className="author">{this.state.userName ? <div> {this.state.userName} </div> : <div> <Spinner/> </div>
             }</a>
                     <div className="metadata">
                         <span className="date">{this.props.content.blockTime}</span>
@@ -92,7 +94,7 @@ class Board extends React.Component {
                         {this.state.content}
                     </div>
                     <div className="text">
-                        {this.state.prizes}
+                        업적 : {this.state.prizes}
             {/* {this.state.prizes ? this.state.prizes.map((c, idx) =>{return ({c})
             }): <div> loading </div>} */}
                     </div>

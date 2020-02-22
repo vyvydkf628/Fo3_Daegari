@@ -1,6 +1,8 @@
 import React from "react";
 import Web3 from "web3";
 
+import Spinner from './Spinner'
+
 
 class Profile extends React.Component {
     constructor(props){
@@ -21,7 +23,9 @@ class Profile extends React.Component {
     // }
     callApi= async(res) =>{  
       // const response = await fetch('http://106.10.58.158:3000/v1/addresses/0x1057B46cd3aB3c770e0a04e8D55Dd972faF8Ac4C/transactions');
-      this.state.id = res
+      this.setState({
+        id : res
+      });
       const response = await fetch('http://api-ropsten.etherscan.io/api?module=account&action=tokentx&address='+res+'&startblock=0&endblock=999999999&sort=asc&apikey=HXQ6BH6EYJVXTA4F3KZV86961GZ4RVMR8K');
       const body = await response.json();
       return body.result;
@@ -40,10 +44,13 @@ class Profile extends React.Component {
             
               this.state.prizes = []
           }else{
-              for (let index = 0; index < res.length; index++) {
-                  this.state.prizes[index] = res[index].tokenName+" ,";
-                  
-              }
+               const arr = [];
+                for (let index = 0; index < res.length; index++) {
+                    arr[index] = res[index].tokenName+" ,";
+                }
+                this.setState({
+                    prizes : arr
+                })
           }            
       }))
                 .catch(err => console.log(err));
@@ -65,7 +72,7 @@ class Profile extends React.Component {
     return (
       <div>
           {this.state.id ? <div> {this.state.id} <p>
-                        {this.state.prizes}</p></div>: <div> loading </div>
+                        {this.state.prizes}</p></div>: <div> <Spinner /> </div>
             }
       </div>
     );
