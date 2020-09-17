@@ -4,7 +4,6 @@
 # Duck Chain : Mania's playground through the Block Chain 
 ## Introduction
 
-![logo](./logo.png)
 
 Most of us have more than one hobby.
 The Duck Chain provides playgrounds for various enthusiasts through the block chain.
